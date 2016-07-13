@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["FileThread","A file thread represents one open file. It contains all the information about the data within that file and listens for messages to manipulate the data within the file."]]});

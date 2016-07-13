@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["Line","Holds data for a single line of text."],["Point","Represents a cursor in text."]]});
