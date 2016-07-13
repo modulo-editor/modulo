@@ -5,3 +5,4 @@ authors = ["Connor Brewster <connor.brewster@eagles.oc.edu>", "Caleb Wren <caleb
 license = "MIT"
 
 [dependencies]
+log = "*"
