@@ -2,6 +2,7 @@ use ::core::core_msg::ToCoreThreadMsg;
 use ::file::file_msg::{FileThreadId, ToFileThreadMsg};
 use ::file::file_thread::FileThread;
 use std::collections::HashMap;
+use std::path::PathBuf;
 use std::sync::mpsc::{self, Sender, Receiver};
 use std::thread::{self, JoinHandle};
 
@@ -42,15 +43,17 @@ impl Core {
 
                     let _ = file_thread.send(msg);
                 },
-                ToCoreThreadMsg::SpawnFileThread => self.spawn_file_thread(),
+                ToCoreThreadMsg::SpawnFileThread(path) =>
+                    self.handle_spawn_file_thread(path),
             }
         }
     }
 
-    pub fn spawn_file_thread(&mut self) {
+    pub fn handle_spawn_file_thread(&mut self, path: Option<PathBuf>) {
         let (sender, receiver) = mpsc::channel();
         let id = FileThreadId(self.file_id_counter);
         let file_thread = FileThread::start(id,
+                                            path,
                                             self.file_sender.clone(),
                                             receiver);
         self.file_threads.insert(id, sender);

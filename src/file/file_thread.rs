@@ -1,6 +1,9 @@
 use ::core::core_msg::ToCoreThreadMsg;
-use ::file::file_msg::{FileThreadId, ToFileThreadMsg};
+use ::file::file_msg::{FileThreadId, ToFileThreadMsg, SaveResult};
 use ::file::text::{Line, Point};
+use std::fs::File;
+use std::io::Read;
+use std::path::PathBuf;
 use std::sync::mpsc::{Sender, Receiver};
 use std::thread;
 
@@ -11,10 +14,17 @@ pub struct FileThread {
     core_sender: Sender<ToCoreThreadMsg>,
     core_receiver: Receiver<ToFileThreadMsg>,
     data: Vec<Line>,
+    path: Option<PathBuf>,
 }
 
 impl FileThread {
-    pub fn start(id: FileThreadId, sender: Sender<ToCoreThreadMsg>, receiver: Receiver<ToFileThreadMsg>) {
+    /// Call to open a new file thread. The `path` parameter is the `Path` to the file to edit.
+    /// If `path` is `None`, an empty, untitled file is opened.
+    /// If the file at the path does not exist, the file is created when the file is saved.
+    pub fn start(id: FileThreadId,
+                 path: Option<PathBuf>,
+                 sender: Sender<ToCoreThreadMsg>,
+                 receiver: Receiver<ToFileThreadMsg>) {
         thread::spawn(move || {
             println!("Spawning file thread.");
             let mut file_thread = FileThread {
@@ -22,7 +32,9 @@ impl FileThread {
                 core_sender: sender,
                 core_receiver: receiver,
                 data: Vec::new(),
+                path: path,
             };
+            file_thread.load_file();
             file_thread.run();
         });
     }
@@ -33,8 +45,36 @@ impl FileThread {
             match msg {
                 ToFileThreadMsg::ReplaceText(begin, end, text) =>
                     self.handle_replace_text(begin, end, text),
+                ToFileThreadMsg::Save(sender) =>
+                    self.handle_save(sender),
             }
         }
+    }
+
+    fn load_file(&mut self) {
+        if let Some(ref path) = self.path {
+            let path = path.as_path();
+
+            if !path.exists() || !path.is_file() {
+                return warn!("Illegal path, cannot load file.");
+            }
+
+            // TODO(Connor): Handle file opening failure.
+            let mut file = File::open(path).unwrap();
+            let mut data = String::new();
+            file.read_to_string(&mut data);
+
+            for line in data.lines() {
+                self.data.push(Line::new(line.into()));
+            }
+            println!("Loaded File:");
+            println!("{:?}", self.data);
+        }
+    }
+
+    fn handle_save(&self, sender: Sender<SaveResult>) {
+        println!("Saving...");
+        let _ = sender.send(SaveResult::Ok);
     }
 
     fn handle_replace_text(&mut self, begin: Point, end: Option<Point>, text:String) {

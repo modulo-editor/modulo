@@ -1,4 +1,5 @@
 use ::file::text::Point;
+use std::sync::mpsc::Sender;
 
 #[derive(Debug, Eq, PartialEq, Hash, Clone, Copy)]
 pub struct FileThreadId(pub usize);
@@ -11,4 +12,16 @@ pub enum ToFileThreadMsg {
     /// If the string is the empty string, the text between the start point and end point is
     /// deleted.
     ReplaceText(Point, Option<Point>, String),
+    /// Saves the file to the OS file system. If the path is `None`, the file will not be saved.
+    /// The front end is responsible for making sure the file thread has a proper path to a file.
+    /// This may in the future accept a channel that
+    Save(Sender<SaveResult>),
+}
+
+/// Used to output the result of the save message. The frontend can use this information to know if
+/// a file saved successfully.
+pub enum SaveResult {
+    Ok,
+    Err,
+    PromptForPath,
 }
