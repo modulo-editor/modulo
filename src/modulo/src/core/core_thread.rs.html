@@ -103,14 +103,14 @@
 <span id="59">59</span>
 </pre><pre class='rust '>
 <span class='kw'>use</span> ::<span class='ident'>core</span>::<span class='ident'>core_msg</span>::<span class='ident'>ToCoreThreadMsg</span>;
-<span class='kw'>use</span> ::<span class='ident'>file</span>::<span class='ident'>file_msg</span>::{<span class='ident'>FileId</span>, <span class='ident'>ToFileThreadMsg</span>};
+<span class='kw'>use</span> ::<span class='ident'>file</span>::<span class='ident'>file_msg</span>::{<span class='ident'>FileThreadId</span>, <span class='ident'>ToFileThreadMsg</span>};
 <span class='kw'>use</span> ::<span class='ident'>file</span>::<span class='ident'>file_thread</span>::<span class='ident'>FileThread</span>;
 <span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>collections</span>::<span class='ident'>HashMap</span>;
 <span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>sync</span>::<span class='ident'>mpsc</span>::{<span class='self'>self</span>, <span class='ident'>Sender</span>, <span class='ident'>Receiver</span>};
 <span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>thread</span>::{<span class='self'>self</span>, <span class='ident'>JoinHandle</span>};
 
 <span class='kw'>pub</span> <span class='kw'>struct</span> <span class='ident'>Core</span> {
-    <span class='ident'>file_threads</span>: <span class='ident'>HashMap</span><span class='op'>&lt;</span><span class='ident'>FileId</span>, <span class='ident'>Sender</span><span class='op'>&lt;</span><span class='ident'>ToFileThreadMsg</span><span class='op'>&gt;&gt;</span>,
+    <span class='ident'>file_threads</span>: <span class='ident'>HashMap</span><span class='op'>&lt;</span><span class='ident'>FileThreadId</span>, <span class='ident'>Sender</span><span class='op'>&lt;</span><span class='ident'>ToFileThreadMsg</span><span class='op'>&gt;&gt;</span>,
     <span class='ident'>file_receiver</span>: <span class='ident'>Receiver</span><span class='op'>&lt;</span><span class='ident'>ToCoreThreadMsg</span><span class='op'>&gt;</span>,
     <span class='ident'>file_sender</span>: <span class='ident'>Sender</span><span class='op'>&lt;</span><span class='ident'>ToCoreThreadMsg</span><span class='op'>&gt;</span>,
     <span class='ident'>file_id_counter</span>: <span class='ident'>usize</span>,
@@ -153,7 +153,7 @@
 
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>spawn_file_thread</span>(<span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='self'>self</span>) {
         <span class='kw'>let</span> (<span class='ident'>sender</span>, <span class='ident'>receiver</span>) <span class='op'>=</span> <span class='ident'>mpsc</span>::<span class='ident'>channel</span>();
-        <span class='kw'>let</span> <span class='ident'>id</span> <span class='op'>=</span> <span class='ident'>FileId</span>(<span class='self'>self</span>.<span class='ident'>file_id_counter</span>);
+        <span class='kw'>let</span> <span class='ident'>id</span> <span class='op'>=</span> <span class='ident'>FileThreadId</span>(<span class='self'>self</span>.<span class='ident'>file_id_counter</span>);
         <span class='kw'>let</span> <span class='ident'>file_thread</span> <span class='op'>=</span> <span class='ident'>FileThread</span>::<span class='ident'>start</span>(<span class='ident'>id</span>,
                                             <span class='self'>self</span>.<span class='ident'>file_sender</span>.<span class='ident'>clone</span>(),
                                             <span class='ident'>receiver</span>);

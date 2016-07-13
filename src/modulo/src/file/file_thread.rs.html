@@ -87,7 +87,7 @@
 <span id="43">43</span>
 </pre><pre class='rust '>
 <span class='kw'>use</span> ::<span class='ident'>core</span>::<span class='ident'>core_msg</span>::<span class='ident'>ToCoreThreadMsg</span>;
-<span class='kw'>use</span> ::<span class='ident'>file</span>::<span class='ident'>file_msg</span>::{<span class='ident'>FileId</span>, <span class='ident'>ToFileThreadMsg</span>};
+<span class='kw'>use</span> ::<span class='ident'>file</span>::<span class='ident'>file_msg</span>::{<span class='ident'>FileThreadId</span>, <span class='ident'>ToFileThreadMsg</span>};
 <span class='kw'>use</span> ::<span class='ident'>file</span>::<span class='ident'>text</span>::{<span class='ident'>Line</span>, <span class='ident'>Point</span>};
 <span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>sync</span>::<span class='ident'>mpsc</span>::{<span class='ident'>Sender</span>, <span class='ident'>Receiver</span>};
 <span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>thread</span>;
@@ -95,14 +95,14 @@
 <span class='doccomment'>/// A file thread represents one open file. It contains all the information about the data within</span>
 <span class='doccomment'>/// that file and listens for messages to manipulate the data within the file.</span>
 <span class='kw'>pub</span> <span class='kw'>struct</span> <span class='ident'>FileThread</span> {
-    <span class='ident'>id</span>: <span class='ident'>FileId</span>,
+    <span class='ident'>id</span>: <span class='ident'>FileThreadId</span>,
     <span class='ident'>core_sender</span>: <span class='ident'>Sender</span><span class='op'>&lt;</span><span class='ident'>ToCoreThreadMsg</span><span class='op'>&gt;</span>,
     <span class='ident'>core_receiver</span>: <span class='ident'>Receiver</span><span class='op'>&lt;</span><span class='ident'>ToFileThreadMsg</span><span class='op'>&gt;</span>,
     <span class='ident'>data</span>: <span class='ident'>Vec</span><span class='op'>&lt;</span><span class='ident'>Line</span><span class='op'>&gt;</span>,
 }
 
 <span class='kw'>impl</span> <span class='ident'>FileThread</span> {
-    <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>start</span>(<span class='ident'>id</span>: <span class='ident'>FileId</span>, <span class='ident'>sender</span>: <span class='ident'>Sender</span><span class='op'>&lt;</span><span class='ident'>ToCoreThreadMsg</span><span class='op'>&gt;</span>, <span class='ident'>receiver</span>: <span class='ident'>Receiver</span><span class='op'>&lt;</span><span class='ident'>ToFileThreadMsg</span><span class='op'>&gt;</span>) {
+    <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>start</span>(<span class='ident'>id</span>: <span class='ident'>FileThreadId</span>, <span class='ident'>sender</span>: <span class='ident'>Sender</span><span class='op'>&lt;</span><span class='ident'>ToCoreThreadMsg</span><span class='op'>&gt;</span>, <span class='ident'>receiver</span>: <span class='ident'>Receiver</span><span class='op'>&lt;</span><span class='ident'>ToFileThreadMsg</span><span class='op'>&gt;</span>) {
         <span class='ident'>thread</span>::<span class='ident'>spawn</span>(<span class='kw'>move</span> <span class='op'>||</span> {
             <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;Spawning file thread.&quot;</span>);
             <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>file_thread</span> <span class='op'>=</span> <span class='ident'>FileThread</span> {

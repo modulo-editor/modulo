@@ -1,1 +1,1 @@
-initSidebarItems({"enum":[["ToFileThreadMsg","Messages that can be sent to the file thread to manipulate text"]],"struct":[["FileId",""]]});
+initSidebarItems({"enum":[["ToFileThreadMsg","Messages that can be sent to the file thread to manipulate text"]],"struct":[["FileThreadId",""]]});

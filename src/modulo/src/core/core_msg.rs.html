@@ -53,13 +53,13 @@
 <span id="9"> 9</span>
 <span id="10">10</span>
 </pre><pre class='rust '>
-<span class='kw'>use</span> ::<span class='ident'>file</span>::<span class='ident'>file_msg</span>::{<span class='ident'>FileId</span>, <span class='ident'>ToFileThreadMsg</span>};
+<span class='kw'>use</span> ::<span class='ident'>file</span>::<span class='ident'>file_msg</span>::{<span class='ident'>FileThreadId</span>, <span class='ident'>ToFileThreadMsg</span>};
 
 <span class='doccomment'>/// Messages that can be sent to the core thread.</span>
 <span class='attribute'>#[<span class='ident'>derive</span>(<span class='ident'>Debug</span>)]</span>
 <span class='kw'>pub</span> <span class='kw'>enum</span> <span class='ident'>ToCoreThreadMsg</span> {
-    <span class='doccomment'>/// Sends file thread message to the file thread matching the `FileId`</span>
-    <span class='ident'>FileThreadMsg</span>(<span class='ident'>FileId</span>, <span class='ident'>ToFileThreadMsg</span>),
+    <span class='doccomment'>/// Sends file thread message to the file thread matching the `FileThreadId`</span>
+    <span class='ident'>FileThreadMsg</span>(<span class='ident'>FileThreadId</span>, <span class='ident'>ToFileThreadMsg</span>),
     <span class='doccomment'>/// Spawns a new file thread</span>
     <span class='ident'>SpawnFileThread</span>,
 }
