@@ -2,6 +2,7 @@ use ::core::core_msg::ToCoreThreadMsg;
 use ::file::file_msg::{FileId, ToFileThreadMsg};
 use ::file::text::{Line, Point};
 use std::sync::mpsc::{Sender, Receiver};
+use std::thread;
 
 /// A file thread represents one open file. It contains all the information about the data within
 /// that file and listens for messages to manipulate the data within the file.
@@ -13,13 +14,17 @@ pub struct FileThread {
 }
 
 impl FileThread {
-    pub fn new(id: FileId, sender: Sender<ToCoreThreadMsg>, receiver: Receiver<ToFileThreadMsg>) -> FileThread {
-        FileThread {
-            id: id,
-            core_sender: sender,
-            core_receiver: receiver,
-            data: Vec::new(),
-        }
+    pub fn start(id: FileId, sender: Sender<ToCoreThreadMsg>, receiver: Receiver<ToFileThreadMsg>) {
+        thread::spawn(move || {
+            println!("Spawning file thread.");
+            let mut file_thread = FileThread {
+                id: id,
+                core_sender: sender,
+                core_receiver: receiver,
+                data: Vec::new(),
+            };
+            file_thread.run();
+        });
     }
 
     /// Runs the event loop for the `FileThread`

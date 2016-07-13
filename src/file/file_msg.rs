@@ -1,7 +1,7 @@
 use ::file::text::Point;
 
 #[derive(Debug, Eq, PartialEq, Hash, Clone, Copy)]
-pub struct FileId(usize);
+pub struct FileId(pub usize);
 
 /// Messages that can be sent to the file thread to manipulate text
 #[derive(Debug)]
