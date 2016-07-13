@@ -47,15 +47,15 @@
                    <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                        [<span class='inner'>&#x2212;</span>]
                    </a>
-               </span><a id='src-16' class='srclink' href='../../../src/modulo/src/core/core_msg.rs.html#5-10' title='goto source code'>[src]</a></span></h1>
+               </span><a id='src-10' class='srclink' href='../../../src/modulo/src/core/core_msg.rs.html#5-10' title='goto source code'>[src]</a></span></h1>
 <pre class='rust enum'>pub enum ToCoreThreadMsg {
-    FileThreadMsg(<a class='struct' href='../../../modulo/file/file_msg/struct.FileId.html' title='modulo::file::file_msg::FileId'>FileId</a>,&nbsp;<a class='enum' href='../../../modulo/file/file_msg/enum.ToFileThreadMsg.html' title='modulo::file::file_msg::ToFileThreadMsg'>ToFileThreadMsg</a>),
+    FileThreadMsg(<a class='struct' href='../../../modulo/file/file_msg/struct.FileId.html' title='modulo::file::file_msg::FileId'>FileId</a>, <a class='enum' href='../../../modulo/file/file_msg/enum.ToFileThreadMsg.html' title='modulo::file::file_msg::ToFileThreadMsg'>ToFileThreadMsg</a>),
     SpawnFileThread,
 }</pre><div class='docblock'><p>Messages that can be sent to the core thread.</p>
 </div><h2 class='variants'>Variants</h2>
-<span id='variant.FileThreadMsg' class='variant'><code>FileThreadMsg(<a class='struct' href='../../../modulo/file/file_msg/struct.FileId.html' title='modulo::file::file_msg::FileId'>FileId</a>,&nbsp;<a class='enum' href='../../../modulo/file/file_msg/enum.ToFileThreadMsg.html' title='modulo::file::file_msg::ToFileThreadMsg'>ToFileThreadMsg</a>)</code></span><div class='docblock'><p>Sends file thread message to the file thread matching the <code>FileId</code></p>
-</div><span id='variant.SpawnFileThread' class='variant'><code>SpawnFileThread</code></span><div class='docblock'><p>Spawns a new file thread</p>
-</div><h2 id='implementations'>Trait Implementations</h2><h3 class='impl'><span class='in-band'><code>impl <a class='trait' href='https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html' title='core::fmt::Debug'>Debug</a> for <a class='enum' href='../../../modulo/core/core_msg/enum.ToCoreThreadMsg.html' title='modulo::core::core_msg::ToCoreThreadMsg'>ToCoreThreadMsg</a></code></span><span class='out-of-band'><div class='ghost'></div><a id='src-8' class='srclink' href='../../../src/modulo/src/core/core_msg.rs.html#4' title='goto source code'>[src]</a></span></h3>
+<table class='variants_table'><tr><td id='variant.FileThreadMsg'><code>FileThreadMsg</code></td><td><div class='docblock'><p>Sends file thread message to the file thread matching the <code>FileId</code></p>
+</div></td><td></td></tr><tr><td id='variant.SpawnFileThread'><code>SpawnFileThread</code></td><td><div class='docblock'><p>Spawns a new file thread</p>
+</div></td><td></td></tr></table><h2 id='implementations'>Trait Implementations</h2><h3 id='derived_implementations'>Derived Implementations </h3><h3 class='impl'><span class='in-band'><code>impl <a class='trait' href='https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html' title='core::fmt::Debug'>Debug</a> for <a class='enum' href='../../../modulo/core/core_msg/enum.ToCoreThreadMsg.html' title='modulo::core::core_msg::ToCoreThreadMsg'>ToCoreThreadMsg</a></code></span><span class='out-of-band'><div class='ghost'></div><a id='src-15' class='srclink' href='../../../src/modulo/src/core/core_msg.rs.html#4' title='goto source code'>[src]</a></span></h3>
 <div class='impl-items'><h4 id='method.fmt' class='method'><code>fn <a href='https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html#tymethod.fmt' class='fnname'>fmt</a>(&amp;self, __arg_0: &amp;mut <a class='struct' href='https://doc.rust-lang.org/nightly/core/fmt/struct.Formatter.html' title='core::fmt::Formatter'>Formatter</a>) -&gt; <a class='type' href='https://doc.rust-lang.org/nightly/core/fmt/type.Result.html' title='core::fmt::Result'>Result</a></code></h4>
 <div class='docblock'><p>Formats the value using the given formatter.</p>
 </div></div></section>
