@@ -1,5 +1,2 @@
-pub mod messages;
-
-pub struct Core {
-
-}
+pub mod core;
+pub mod core_msg;
