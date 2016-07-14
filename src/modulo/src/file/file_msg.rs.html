@@ -56,8 +56,22 @@
 <span id="12">12</span>
 <span id="13">13</span>
 <span id="14">14</span>
+<span id="15">15</span>
+<span id="16">16</span>
+<span id="17">17</span>
+<span id="18">18</span>
+<span id="19">19</span>
+<span id="20">20</span>
+<span id="21">21</span>
+<span id="22">22</span>
+<span id="23">23</span>
+<span id="24">24</span>
+<span id="25">25</span>
+<span id="26">26</span>
+<span id="27">27</span>
 </pre><pre class='rust '>
 <span class='kw'>use</span> ::<span class='ident'>file</span>::<span class='ident'>text</span>::<span class='ident'>Point</span>;
+<span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>sync</span>::<span class='ident'>mpsc</span>::<span class='ident'>Sender</span>;
 
 <span class='attribute'>#[<span class='ident'>derive</span>(<span class='ident'>Debug</span>, <span class='ident'>Eq</span>, <span class='ident'>PartialEq</span>, <span class='ident'>Hash</span>, <span class='ident'>Clone</span>, <span class='ident'>Copy</span>)]</span>
 <span class='kw'>pub</span> <span class='kw'>struct</span> <span class='ident'>FileThreadId</span>(<span class='kw'>pub</span> <span class='ident'>usize</span>);
@@ -70,6 +84,18 @@
     <span class='doccomment'>/// If the string is the empty string, the text between the start point and end point is</span>
     <span class='doccomment'>/// deleted.</span>
     <span class='ident'>ReplaceText</span>(<span class='ident'>Point</span>, <span class='prelude-ty'>Option</span><span class='op'>&lt;</span><span class='ident'>Point</span><span class='op'>&gt;</span>, <span class='ident'>String</span>),
+    <span class='doccomment'>/// Saves the file to the OS file system. If the path is `None`, the file will not be saved.</span>
+    <span class='doccomment'>/// The front end is responsible for making sure the file thread has a proper path to a file.</span>
+    <span class='doccomment'>/// This may in the future accept a channel that</span>
+    <span class='ident'>Save</span>(<span class='ident'>Sender</span><span class='op'>&lt;</span><span class='ident'>SaveResult</span><span class='op'>&gt;</span>),
+}
+
+<span class='doccomment'>/// Used to output the result of the save message. The frontend can use this information to know if</span>
+<span class='doccomment'>/// a file saved successfully.</span>
+<span class='kw'>pub</span> <span class='kw'>enum</span> <span class='ident'>SaveResult</span> {
+    <span class='prelude-val'>Ok</span>,
+    <span class='prelude-val'>Err</span>,
+    <span class='ident'>PromptForPath</span>,
 }
 </pre>
 </section>

@@ -1,1 +1,1 @@
-initSidebarItems({"enum":[["ToFileThreadMsg","Messages that can be sent to the file thread to manipulate text"]],"struct":[["FileThreadId",""]]});
+initSidebarItems({"enum":[["SaveResult","Used to output the result of the save message. The frontend can use this information to know if a file saved successfully."],["ToFileThreadMsg","Messages that can be sent to the file thread to manipulate text"]],"struct":[["FileThreadId",""]]});
