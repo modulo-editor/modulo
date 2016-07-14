@@ -56,6 +56,7 @@ impl FileThread {
             let path = path.as_path();
 
             if !path.exists() || !path.is_file() {
+                self.data.push(Line::new("".into()));
                 return warn!("Illegal path, cannot load file.");
             }
 
@@ -68,6 +69,8 @@ impl FileThread {
                 self.data.push(Line::new(line.into()));
             }
             info!("Loaded file from path: {:?}", path);
+        } else {
+            self.data.push(Line::new("".into()));
         }
     }
 
@@ -98,7 +101,31 @@ impl FileThread {
         }
     }
 
-    fn handle_replace_text(&mut self, begin: Point, end: Option<Point>, text:String) {
-        println!("Replacing Text.");
+    fn handle_replace_text(&mut self, begin: Point, end: Option<Point>, text: String) {
+        info!("Replacing text between {:?} and {:?} with {:?}", begin, end, text);
+
+        let end = match end {
+            Some(end) => end,
+            None => begin,
+        };
+
+        let lines = {
+            let before_lines = &self.data[..begin.line];
+            let before_text = &self.data[begin.line][..begin.index];
+            let after_text = &self.data[end.line][end.index..];
+            let after_lines = &self.data[end.line + 1..];
+
+            let text = format!("{}{}{}", before_text, text, after_text);
+            let mut lines = Vec::new();
+
+            lines.extend_from_slice(before_lines);
+            for line in text.lines() {
+                lines.push(Line::new(line.into()));
+            }
+            lines.extend_from_slice(after_lines);
+            lines
+        };
+
+        self.data = lines;
     }
 }
