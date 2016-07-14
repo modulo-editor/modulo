@@ -2,7 +2,7 @@ use ::core::core_msg::ToCoreThreadMsg;
 use ::file::file_msg::{FileThreadId, ToFileThreadMsg, SaveResult};
 use ::file::text::{Line, Point};
 use std::fs::File;
-use std::io::Read;
+use std::io::{Read, Write};
 use std::path::PathBuf;
 use std::sync::mpsc::{Sender, Receiver};
 use std::thread;
@@ -67,14 +67,35 @@ impl FileThread {
             for line in data.lines() {
                 self.data.push(Line::new(line.into()));
             }
-            println!("Loaded File:");
-            println!("{:?}", self.data);
+            info!("Loaded file from path: {:?}", path);
         }
     }
 
     fn handle_save(&self, sender: Sender<SaveResult>) {
-        println!("Saving...");
-        let _ = sender.send(SaveResult::Ok);
+        match self.path {
+            Some(ref path) => {
+                info!("Saving file at path: {:?}", path);
+                let path = path.as_path();
+                let mut file = if path.exists() && path.is_file() {
+                    // TODO(Connor): Handle file opening failure.
+                    File::create(path).unwrap()
+                } else {
+                    // TODO(Connor): Handle file opening failure.
+                    File::create(path).unwrap()
+                };
+                let mut data = String::new();
+                for line in &self.data {
+                    data.push_str(&line.text);
+                    data.push('\n');
+                }
+                // TODO(Connor): Handle file writing failure.
+                file.write_all(data.as_bytes()).expect("Failed to write.");
+            },
+            None => {
+                info!("Could not save file. Path is not set.");
+                let _ = sender.send(SaveResult::PromptForPath);
+            },
+        }
     }
 
     fn handle_replace_text(&mut self, begin: Point, end: Option<Point>, text:String) {
