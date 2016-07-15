@@ -1,0 +1,7 @@
+[package]
+name = "modulo_traits"
+version = "0.1.0"
+authors = ["Connor Brewster <connor.brewster@eagles.oc.edu>", "Caleb Wren <caleb_wren@me.com>"]
+license = "MIT"
+
+[dependencies]

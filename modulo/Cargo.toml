@@ -1,0 +1,9 @@
+[package]
+name = "modulo"
+version = "0.1.0"
+authors = ["Connor Brewster <connor.brewster@eagles.oc.edu>", "Caleb Wren <caleb_wren@me.com>"]
+license = "MIT"
+
+[dependencies]
+log = "*"
+modulo_traits = { path = "../modulo_traits" }
