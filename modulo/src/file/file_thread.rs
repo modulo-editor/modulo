@@ -47,7 +47,7 @@ impl FileThread {
             match msg {
                 ToFileThreadMsg::ReplaceText(range, text) => {
                     info!("Recieved replace text file message.");
-                    self.file.replace_text_in_range(range, &text);
+                    self.file.replace_text_in_ranges(&mut vec!(range), &text);
                 },
                 ToFileThreadMsg::ClearAllText => {
                     info!("Recieved clear all text message.");
