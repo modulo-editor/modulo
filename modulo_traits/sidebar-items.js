@@ -1,1 +1,1 @@
-initSidebarItems({});
+initSidebarItems({"mod":[["core_msg",""],["file_msg",""],["text",""]]});

@@ -4,13 +4,13 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="generator" content="rustdoc">
-    <meta name="description" content="API documentation for the Rust `core_msg` mod in crate `modulo`.">
-    <meta name="keywords" content="rust, rustlang, rust-lang, core_msg">
+    <meta name="description" content="Source to the Rust file `/home/travis/build/modulo-editor/modulo/modulo_traits/src/core_msg.rs`.">
+    <meta name="keywords" content="rust, rustlang, rust-lang">
 
-    <title>modulo::core::core_msg - Rust</title>
+    <title>core_msg.rs.html -- source</title>
 
-    <link rel="stylesheet" type="text/css" href="../../../rustdoc.css">
-    <link rel="stylesheet" type="text/css" href="../../../main.css">
+    <link rel="stylesheet" type="text/css" href="../../rustdoc.css">
+    <link rel="stylesheet" type="text/css" href="../../main.css">
     
 
     
@@ -28,7 +28,7 @@
 
     <nav class="sidebar">
         
-        <p class='location'><a href='../../index.html'>modulo</a>::<wbr><a href='../index.html'>core</a></p><script>window.sidebarCurrent = {name: 'core_msg', ty: 'mod', relpath: '../'};</script><script defer src="../sidebar-items.js"></script>
+        
     </nav>
 
     <nav class="sub">
@@ -42,21 +42,31 @@
         </form>
     </nav>
 
-    <section id='main' class="content mod">
-<h1 class='fqn'><span class='in-band'>Module <a href='../../index.html'>modulo</a>::<wbr><a href='../index.html'>core</a>::<wbr><a class='mod' href=''>core_msg</a></span><span class='out-of-band'><span id='render-detail'>
-                   <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
-                       [<span class='inner'>&#x2212;</span>]
-                   </a>
-               </span><a id='src-7' class='srclink' href='../../../src/modulo/core/core_msg.rs.html#1-11' title='goto source code'>[src]</a></span></h1>
-<h2 id='enums' class='section-header'><a href="#enums">Enums</a></h2>
-<table>
-                       <tr class=' module-item'>
-                           <td><a class='enum' href='enum.ToCoreThreadMsg.html'
-                                  title='modulo::core::core_msg::ToCoreThreadMsg'>ToCoreThreadMsg</a></td>
-                           <td class='docblock short'>
-                                <p>Messages that can be sent to the core thread.</p>
-                           </td>
-                       </tr></table></section>
+    <section id='main' class="content source"><pre class="line-numbers"><span id="1"> 1</span>
+<span id="2"> 2</span>
+<span id="3"> 3</span>
+<span id="4"> 4</span>
+<span id="5"> 5</span>
+<span id="6"> 6</span>
+<span id="7"> 7</span>
+<span id="8"> 8</span>
+<span id="9"> 9</span>
+<span id="10">10</span>
+<span id="11">11</span>
+</pre><pre class='rust '>
+<span class='kw'>use</span> <span class='ident'>file_msg</span>::{<span class='ident'>FileThreadId</span>, <span class='ident'>ToFileThreadMsg</span>};
+<span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>path</span>::<span class='ident'>PathBuf</span>;
+
+<span class='doccomment'>/// Messages that can be sent to the core thread.</span>
+<span class='attribute'>#[<span class='ident'>derive</span>(<span class='ident'>Debug</span>)]</span>
+<span class='kw'>pub</span> <span class='kw'>enum</span> <span class='ident'>ToCoreThreadMsg</span> {
+    <span class='doccomment'>/// Sends file thread message to the file thread matching the `FileThreadId`</span>
+    <span class='ident'>FileThreadMsg</span>(<span class='ident'>FileThreadId</span>, <span class='ident'>ToFileThreadMsg</span>),
+    <span class='doccomment'>/// Spawns a new file thread</span>
+    <span class='ident'>SpawnFileThread</span>(<span class='prelude-ty'>Option</span><span class='op'>&lt;</span><span class='ident'>PathBuf</span><span class='op'>&gt;</span>),
+}
+</pre>
+</section>
     <section id='search' class="content hidden"></section>
 
     <section class="footer"></section>
@@ -110,13 +120,13 @@
     
 
     <script>
-        window.rootPath = "../../../";
-        window.currentCrate = "modulo";
+        window.rootPath = "../../";
+        window.currentCrate = "modulo_traits";
         window.playgroundUrl = "";
     </script>
-    <script src="../../../jquery.js"></script>
-    <script src="../../../main.js"></script>
+    <script src="../../jquery.js"></script>
+    <script src="../../main.js"></script>
     
-    <script defer src="../../../search-index.js"></script>
+    <script defer src="../../search-index.js"></script>
 </body>
 </html>

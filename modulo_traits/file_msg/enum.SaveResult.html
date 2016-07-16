@@ -4,13 +4,13 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="generator" content="rustdoc">
-    <meta name="description" content="Source to the Rust file `/home/travis/build/modulo-editor/modulo/modulo/src/core/core_msg.rs`.">
-    <meta name="keywords" content="rust, rustlang, rust-lang">
+    <meta name="description" content="API documentation for the Rust `SaveResult` enum in crate `modulo_traits`.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, SaveResult">
 
-    <title>core_msg.rs.html -- source</title>
+    <title>modulo_traits::file_msg::SaveResult - Rust</title>
 
-    <link rel="stylesheet" type="text/css" href="../../../rustdoc.css">
-    <link rel="stylesheet" type="text/css" href="../../../main.css">
+    <link rel="stylesheet" type="text/css" href="../../rustdoc.css">
+    <link rel="stylesheet" type="text/css" href="../../main.css">
     
 
     
@@ -28,7 +28,7 @@
 
     <nav class="sidebar">
         
-        
+        <p class='location'><a href='../index.html'>modulo_traits</a>::<wbr><a href='index.html'>file_msg</a></p><script>window.sidebarCurrent = {name: 'SaveResult', ty: 'enum', relpath: ''};</script><script defer src="sidebar-items.js"></script>
     </nav>
 
     <nav class="sub">
@@ -42,31 +42,20 @@
         </form>
     </nav>
 
-    <section id='main' class="content source"><pre class="line-numbers"><span id="1"> 1</span>
-<span id="2"> 2</span>
-<span id="3"> 3</span>
-<span id="4"> 4</span>
-<span id="5"> 5</span>
-<span id="6"> 6</span>
-<span id="7"> 7</span>
-<span id="8"> 8</span>
-<span id="9"> 9</span>
-<span id="10">10</span>
-<span id="11">11</span>
-</pre><pre class='rust '>
-<span class='kw'>use</span> ::<span class='ident'>file</span>::<span class='ident'>file_msg</span>::{<span class='ident'>FileThreadId</span>, <span class='ident'>ToFileThreadMsg</span>};
-<span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>path</span>::<span class='ident'>PathBuf</span>;
-
-<span class='doccomment'>/// Messages that can be sent to the core thread.</span>
-<span class='attribute'>#[<span class='ident'>derive</span>(<span class='ident'>Debug</span>)]</span>
-<span class='kw'>pub</span> <span class='kw'>enum</span> <span class='ident'>ToCoreThreadMsg</span> {
-    <span class='doccomment'>/// Sends file thread message to the file thread matching the `FileThreadId`</span>
-    <span class='ident'>FileThreadMsg</span>(<span class='ident'>FileThreadId</span>, <span class='ident'>ToFileThreadMsg</span>),
-    <span class='doccomment'>/// Spawns a new file thread</span>
-    <span class='ident'>SpawnFileThread</span>(<span class='prelude-ty'>Option</span><span class='op'>&lt;</span><span class='ident'>PathBuf</span><span class='op'>&gt;</span>),
-}
-</pre>
-</section>
+    <section id='main' class="content enum">
+<h1 class='fqn'><span class='in-band'>Enum <a href='../index.html'>modulo_traits</a>::<wbr><a href='index.html'>file_msg</a>::<wbr><a class='enum' href=''>SaveResult</a></span><span class='out-of-band'><span id='render-detail'>
+                   <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
+                       [<span class='inner'>&#x2212;</span>]
+                   </a>
+               </span><a id='src-81' class='srclink' href='../../src/modulo_traits/file_msg.rs.html#25-29' title='goto source code'>[src]</a></span></h1>
+<pre class='rust enum'>pub enum SaveResult {
+    Ok,
+    Err,
+    PromptForPath,
+}</pre><div class='docblock'><p>Used to output the result of the save message. The frontend can use this information to know if
+a file saved successfully.</p>
+</div><h2 class='variants'>Variants</h2>
+<table class='variants_table'><tr><td id='variant.Ok'><code>Ok</code></td><td></td><td></td></tr><tr><td id='variant.Err'><code>Err</code></td><td></td><td></td></tr><tr><td id='variant.PromptForPath'><code>PromptForPath</code></td><td></td><td></td></tr></table></section>
     <section id='search' class="content hidden"></section>
 
     <section class="footer"></section>
@@ -120,13 +109,13 @@
     
 
     <script>
-        window.rootPath = "../../../";
-        window.currentCrate = "modulo";
+        window.rootPath = "../../";
+        window.currentCrate = "modulo_traits";
         window.playgroundUrl = "";
     </script>
-    <script src="../../../jquery.js"></script>
-    <script src="../../../main.js"></script>
+    <script src="../../jquery.js"></script>
+    <script src="../../main.js"></script>
     
-    <script defer src="../../../search-index.js"></script>
+    <script defer src="../../search-index.js"></script>
 </body>
 </html>
