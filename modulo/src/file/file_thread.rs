@@ -85,8 +85,8 @@ impl FileThread {
         };
 
         let lines = {
-            let before_text = &self.data[begin.line][..begin.index];
-            let after_text = &self.data[end.line][end.index..];
+            let before_text = &self.data[begin.line][..begin.column];
+            let after_text = &self.data[end.line][end.column..];
 
             let text = format!("{}{}{}", before_text, text, after_text);
             let lines: Vec<Line> = text.lines().map(|line| Line::new(line.into())).collect();

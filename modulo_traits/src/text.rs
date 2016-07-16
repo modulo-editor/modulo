@@ -41,18 +41,18 @@ impl Index<Range<usize>> for Line {
     }
 }
 
-/// Represents a cursor in text.
+/// Represents a cursor in text. Stores the line index and the column index.
 #[derive(Debug, Clone, Copy)]
 pub struct Point {
     pub line: usize,
-    pub index: usize,
+    pub column: usize,
 }
 
 impl Point {
-    pub fn new(line: usize, index: usize) -> Point {
+    pub fn new(line: usize, column: usize) -> Point {
         Point {
             line: line,
-            index: index,
+            column: column,
         }
     }
 }
