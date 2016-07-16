@@ -52,10 +52,10 @@ impl Core {
     pub fn handle_spawn_file_thread(&mut self, path: Option<PathBuf>) {
         let (sender, receiver) = mpsc::channel();
         let id = FileThreadId(self.file_id_counter);
-        let file_thread = FileThread::start(id,
-                                            path,
-                                            self.file_sender.clone(),
-                                            receiver);
+        FileThread::start(id,
+                          path,
+                          self.file_sender.clone(),
+                          receiver);
         self.file_threads.insert(id, sender);
         self.file_id_counter += 1;
     }

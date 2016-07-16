@@ -1,5 +1,5 @@
 use std::sync::mpsc::Sender;
-use text::Point;
+use text::SelectionRange;
 
 #[derive(Debug, Eq, PartialEq, Hash, Clone, Copy)]
 pub struct FileThreadId(pub usize);
@@ -11,7 +11,7 @@ pub enum ToFileThreadMsg {
     /// If the end point is `None`, the text is just inserted at the start point.
     /// If the string is the empty string, the text between the start point and end point is
     /// deleted.
-    ReplaceText(Point, Option<Point>, String),
+    ReplaceText(SelectionRange, String),
     /// Clears all the text in the file
     ClearAllText,
     /// Saves the file to the OS file system. If the path is `None`, the file will not be saved.
