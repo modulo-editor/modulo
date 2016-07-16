@@ -4,13 +4,13 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="generator" content="rustdoc">
-    <meta name="description" content="API documentation for the Rust `ToFileThreadMsg` enum in crate `modulo_traits`.">
+    <meta name="description" content="API documentation for the Rust `ToFileThreadMsg` enum in crate `modulo`.">
     <meta name="keywords" content="rust, rustlang, rust-lang, ToFileThreadMsg">
 
-    <title>modulo_traits::file_msg::ToFileThreadMsg - Rust</title>
+    <title>modulo::file::file_msg::ToFileThreadMsg - Rust</title>
 
-    <link rel="stylesheet" type="text/css" href="../../rustdoc.css">
-    <link rel="stylesheet" type="text/css" href="../../main.css">
+    <link rel="stylesheet" type="text/css" href="../../../rustdoc.css">
+    <link rel="stylesheet" type="text/css" href="../../../main.css">
     
 
     
@@ -28,7 +28,7 @@
 
     <nav class="sidebar">
         
-        <p class='location'><a href='../index.html'>modulo_traits</a>::<wbr><a href='index.html'>file_msg</a></p><script>window.sidebarCurrent = {name: 'ToFileThreadMsg', ty: 'enum', relpath: ''};</script><script defer src="sidebar-items.js"></script>
+        <p class='location'><a href='../../index.html'>modulo</a>::<wbr><a href='../index.html'>file</a>::<wbr><a href='index.html'>file_msg</a></p><script>window.sidebarCurrent = {name: 'ToFileThreadMsg', ty: 'enum', relpath: ''};</script><script defer src="sidebar-items.js"></script>
     </nav>
 
     <nav class="sub">
@@ -43,15 +43,15 @@
     </nav>
 
     <section id='main' class="content enum">
-<h1 class='fqn'><span class='in-band'>Enum <a href='../index.html'>modulo_traits</a>::<wbr><a href='index.html'>file_msg</a>::<wbr><a class='enum' href=''>ToFileThreadMsg</a></span><span class='out-of-band'><span id='render-detail'>
+<h1 class='fqn'><span class='in-band'>Enum <a href='../../index.html'>modulo</a>::<wbr><a href='../index.html'>file</a>::<wbr><a href='index.html'>file_msg</a>::<wbr><a class='enum' href=''>ToFileThreadMsg</a></span><span class='out-of-band'><span id='render-detail'>
                    <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                        [<span class='inner'>&#x2212;</span>]
                    </a>
-               </span><a id='src-62' class='srclink' href='../../src/modulo_traits/file_msg.rs.html#9-21' title='goto source code'>[src]</a></span></h1>
+               </span><a id='src-109' class='srclink' href='../../../src/modulo/file/file_msg.rs.html#9-21' title='goto source code'>[src]</a></span></h1>
 <pre class='rust enum'>pub enum ToFileThreadMsg {
-    ReplaceText(<a class='struct' href='../../modulo_traits/text/struct.Point.html' title='modulo_traits::text::Point'>Point</a>, <a class='enum' href='https://doc.rust-lang.org/nightly/core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;<a class='struct' href='../../modulo_traits/text/struct.Point.html' title='modulo_traits::text::Point'>Point</a>&gt;, <a class='struct' href='https://doc.rust-lang.org/nightly/collections/string/struct.String.html' title='collections::string::String'>String</a>),
+    ReplaceText(<a class='struct' href='../../../modulo/file/text/struct.Point.html' title='modulo::file::text::Point'>Point</a>, <a class='enum' href='https://doc.rust-lang.org/nightly/core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;<a class='struct' href='../../../modulo/file/text/struct.Point.html' title='modulo::file::text::Point'>Point</a>&gt;, <a class='struct' href='https://doc.rust-lang.org/nightly/collections/string/struct.String.html' title='collections::string::String'>String</a>),
     ClearAllText,
-    Save(<a class='struct' href='https://doc.rust-lang.org/nightly/std/sync/mpsc/struct.Sender.html' title='std::sync::mpsc::Sender'>Sender</a>&lt;<a class='enum' href='../../modulo_traits/file_msg/enum.SaveResult.html' title='modulo_traits::file_msg::SaveResult'>SaveResult</a>&gt;),
+    Save(<a class='struct' href='https://doc.rust-lang.org/nightly/std/sync/mpsc/struct.Sender.html' title='std::sync::mpsc::Sender'>Sender</a>&lt;<a class='enum' href='../../../modulo/file/file_msg/enum.SaveResult.html' title='modulo::file::file_msg::SaveResult'>SaveResult</a>&gt;),
 }</pre><div class='docblock'><p>Messages that can be sent to the file thread to manipulate text</p>
 </div><h2 class='variants'>Variants</h2>
 <table class='variants_table'><tr><td id='variant.ReplaceText'><code>ReplaceText</code></td><td><div class='docblock'><p>Replace text between the start point and end point with the data from the string.
@@ -62,7 +62,7 @@ deleted.</p>
 </div></td><td></td></tr><tr><td id='variant.Save'><code>Save</code></td><td><div class='docblock'><p>Saves the file to the OS file system. If the path is <code>None</code>, the file will not be saved.
 The front end is responsible for making sure the file thread has a proper path to a file.
 This may in the future accept a channel that</p>
-</div></td><td></td></tr></table><h2 id='implementations'>Trait Implementations</h2><h3 id='derived_implementations'>Derived Implementations </h3><h3 class='impl'><span class='in-band'><code>impl <a class='trait' href='https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html' title='core::fmt::Debug'>Debug</a> for <a class='enum' href='../../modulo_traits/file_msg/enum.ToFileThreadMsg.html' title='modulo_traits::file_msg::ToFileThreadMsg'>ToFileThreadMsg</a></code></span><span class='out-of-band'><div class='ghost'></div><a id='src-70' class='srclink' href='../../src/modulo_traits/file_msg.rs.html#8' title='goto source code'>[src]</a></span></h3>
+</div></td><td></td></tr></table><h2 id='implementations'>Trait Implementations</h2><h3 id='derived_implementations'>Derived Implementations </h3><h3 class='impl'><span class='in-band'><code>impl <a class='trait' href='https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html' title='core::fmt::Debug'>Debug</a> for <a class='enum' href='../../../modulo/file/file_msg/enum.ToFileThreadMsg.html' title='modulo::file::file_msg::ToFileThreadMsg'>ToFileThreadMsg</a></code></span><span class='out-of-band'><div class='ghost'></div><a id='src-117' class='srclink' href='../../../src/modulo/file/file_msg.rs.html#8' title='goto source code'>[src]</a></span></h3>
 <div class='impl-items'><h4 id='method.fmt' class='method'><code>fn <a href='https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html#tymethod.fmt' class='fnname'>fmt</a>(&amp;self, __arg_0: &amp;mut <a class='struct' href='https://doc.rust-lang.org/nightly/core/fmt/struct.Formatter.html' title='core::fmt::Formatter'>Formatter</a>) -&gt; <a class='type' href='https://doc.rust-lang.org/nightly/core/fmt/type.Result.html' title='core::fmt::Result'>Result</a></code></h4>
 <div class='docblock'><p>Formats the value using the given formatter.</p>
 </div></div></section>
@@ -119,13 +119,13 @@ This may in the future accept a channel that</p>
     
 
     <script>
-        window.rootPath = "../../";
-        window.currentCrate = "modulo_traits";
+        window.rootPath = "../../../";
+        window.currentCrate = "modulo";
         window.playgroundUrl = "";
     </script>
-    <script src="../../jquery.js"></script>
-    <script src="../../main.js"></script>
+    <script src="../../../jquery.js"></script>
+    <script src="../../../main.js"></script>
     
-    <script defer src="../../search-index.js"></script>
+    <script defer src="../../../search-index.js"></script>
 </body>
 </html>

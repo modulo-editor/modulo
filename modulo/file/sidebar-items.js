@@ -1,1 +1,1 @@
-initSidebarItems({"mod":[["file_thread",""]]});
+initSidebarItems({"mod":[["file_msg",""],["file_thread",""],["text",""]]});
