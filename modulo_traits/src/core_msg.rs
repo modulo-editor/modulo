@@ -1,4 +1,4 @@
-use ::file::file_msg::{FileThreadId, ToFileThreadMsg};
+use file_msg::{FileThreadId, ToFileThreadMsg};
 use std::path::PathBuf;
 
 /// Messages that can be sent to the core thread.

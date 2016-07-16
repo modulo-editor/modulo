@@ -1,6 +1,6 @@
-use ::core::core_msg::ToCoreThreadMsg;
-use ::file::file_msg::{FileThreadId, ToFileThreadMsg, SaveResult};
-use ::file::text::{Line, Point};
+use modulo_traits::core_msg::ToCoreThreadMsg;
+use modulo_traits::file_msg::{FileThreadId, ToFileThreadMsg, SaveResult};
+use modulo_traits::text::{Line, Point};
 use std::fs::File;
 use std::io::{Read, Write};
 use std::path::PathBuf;
