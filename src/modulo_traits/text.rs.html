@@ -144,18 +144,18 @@
     }
 }
 
-<span class='doccomment'>/// Represents a cursor in text.</span>
+<span class='doccomment'>/// Represents a cursor in text. Stores the line index and the column index.</span>
 <span class='attribute'>#[<span class='ident'>derive</span>(<span class='ident'>Debug</span>, <span class='ident'>Clone</span>, <span class='ident'>Copy</span>)]</span>
 <span class='kw'>pub</span> <span class='kw'>struct</span> <span class='ident'>Point</span> {
     <span class='kw'>pub</span> <span class='ident'>line</span>: <span class='ident'>usize</span>,
-    <span class='kw'>pub</span> <span class='ident'>index</span>: <span class='ident'>usize</span>,
+    <span class='kw'>pub</span> <span class='ident'>column</span>: <span class='ident'>usize</span>,
 }
 
 <span class='kw'>impl</span> <span class='ident'>Point</span> {
-    <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>new</span>(<span class='ident'>line</span>: <span class='ident'>usize</span>, <span class='ident'>index</span>: <span class='ident'>usize</span>) <span class='op'>-&gt;</span> <span class='ident'>Point</span> {
+    <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>new</span>(<span class='ident'>line</span>: <span class='ident'>usize</span>, <span class='ident'>column</span>: <span class='ident'>usize</span>) <span class='op'>-&gt;</span> <span class='ident'>Point</span> {
         <span class='ident'>Point</span> {
             <span class='ident'>line</span>: <span class='ident'>line</span>,
-            <span class='ident'>index</span>: <span class='ident'>index</span>,
+            <span class='ident'>column</span>: <span class='ident'>column</span>,
         }
     }
 }
