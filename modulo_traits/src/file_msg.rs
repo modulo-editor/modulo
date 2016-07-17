@@ -11,6 +11,8 @@ pub enum ToFileThreadMsg {
     ReplaceText(String),
     /// Clears all the text in the file.
     ClearAllText,
+    /// Sets all the current selections in the document.
+    SetSelections(Vec<SelectionRange>),
     /// Saves the file to the OS file system. If the path is `None`, the file will not be saved.
     /// The front end is responsible for making sure the file thread has a proper path to a file.
     /// This may in the future accept a channel that.

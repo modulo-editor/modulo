@@ -84,11 +84,7 @@ impl FileData {
         self.lines.push(Line::new(String::new()));
     }
 
-    pub fn add_selection(&mut self, range: SelectionRange) {
-        self.selections.push(range);
-    }
-
-    pub fn clear_all_selections(&mut self) {
-        self.selections.clear();
+    pub fn set_selections(&mut self, selections: Vec<SelectionRange>) {
+        self.selections = selections;
     }
 }
