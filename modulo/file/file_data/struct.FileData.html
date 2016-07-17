@@ -57,18 +57,20 @@
                              <td id='structfield.selections'><code>selections</code></td><td><div class='docblock'><p>Stores the selection ranges in the entire file.</p>
 </div></td></tr><tr class='stab '>
                              <td id='structfield.lines'><code>lines</code></td><td><div class='docblock'><p>Stores the text data in the entire file.</p>
-</div></td></tr></table><h2 id='methods'>Methods</h2><h3 class='impl'><span class='in-band'><code>impl <a class='struct' href='../../../modulo/file/file_data/struct.FileData.html' title='modulo::file::file_data::FileData'>FileData</a></code></span><span class='out-of-band'><div class='ghost'></div><a id='src-60' class='srclink' href='../../../src/modulo/file/file_data.rs.html#16-87' title='goto source code'>[src]</a></span></h3>
+</div></td></tr></table><h2 id='methods'>Methods</h2><h3 class='impl'><span class='in-band'><code>impl <a class='struct' href='../../../modulo/file/file_data/struct.FileData.html' title='modulo::file::file_data::FileData'>FileData</a></code></span><span class='out-of-band'><div class='ghost'></div><a id='src-60' class='srclink' href='../../../src/modulo/file/file_data.rs.html#16-94' title='goto source code'>[src]</a></span></h3>
 <div class='impl-items'><h4 id='method.new' class='method'><code>fn <a href='#method.new' class='fnname'>new</a>() -&gt; <a class='struct' href='../../../modulo/file/file_data/struct.FileData.html' title='modulo::file::file_data::FileData'>FileData</a></code></h4>
 <div class='docblock'><p>Creates file data with a single new line.</p>
 </div><h4 id='method.load_from_file' class='method'><code>fn <a href='#method.load_from_file' class='fnname'>load_from_file</a>(&amp;mut self, path: &amp;<a class='struct' href='https://doc.rust-lang.org/nightly/std/path/struct.Path.html' title='std::path::Path'>Path</a>)</code></h4>
 <div class='docblock'><p>Loads file data from a file on the file system.</p>
 </div><h4 id='method.load_from_string' class='method'><code>fn <a href='#method.load_from_string' class='fnname'>load_from_string</a>(&amp;mut self, string: &amp;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a>)</code></h4>
 <div class='docblock'><p>Loads file data from a string.</p>
-</div><h4 id='method.replace_text_in_ranges' class='method'><code>fn <a href='#method.replace_text_in_ranges' class='fnname'>replace_text_in_ranges</a>(&amp;mut self, ranges: &amp;mut <a class='struct' href='https://doc.rust-lang.org/nightly/collections/vec/struct.Vec.html' title='collections::vec::Vec'>Vec</a>&lt;<a class='struct' href='../../../modulo_traits/text/struct.SelectionRange.html' title='modulo_traits::text::SelectionRange'>SelectionRange</a>&gt;, text: &amp;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a>)</code></h4>
-<div class='docblock'><p>Replaces all the text in a selection range.</p>
+</div><h4 id='method.replace_text' class='method'><code>fn <a href='#method.replace_text' class='fnname'>replace_text</a>(&amp;mut self, text: &amp;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a>)</code></h4>
+<div class='docblock'><p>Replaces all the text in a selection range. Returns the new vec of selection ranges.</p>
 </div><h4 id='method.clear_all_text' class='method'><code>fn <a href='#method.clear_all_text' class='fnname'>clear_all_text</a>(&amp;mut self)</code></h4>
 <div class='docblock'><p>Clears all the data in the file;</p>
-</div></div></section>
+</div><h4 id='method.add_selection' class='method'><code>fn <a href='#method.add_selection' class='fnname'>add_selection</a>(&amp;mut self, range: <a class='struct' href='../../../modulo_traits/text/struct.SelectionRange.html' title='modulo_traits::text::SelectionRange'>SelectionRange</a>)</code></h4>
+<h4 id='method.clear_all_selections' class='method'><code>fn <a href='#method.clear_all_selections' class='fnname'>clear_all_selections</a>(&amp;mut self)</code></h4>
+</div></section>
     <section id='search' class="content hidden"></section>
 
     <section class="footer"></section>

@@ -68,9 +68,6 @@
 <span id="24">24</span>
 <span id="25">25</span>
 <span id="26">26</span>
-<span id="27">27</span>
-<span id="28">28</span>
-<span id="29">29</span>
 </pre><pre class='rust '>
 <span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>sync</span>::<span class='ident'>mpsc</span>::<span class='ident'>Sender</span>;
 <span class='kw'>use</span> <span class='ident'>text</span>::<span class='ident'>SelectionRange</span>;
@@ -81,16 +78,13 @@
 <span class='doccomment'>/// Messages that can be sent to the file thread to manipulate text</span>
 <span class='attribute'>#[<span class='ident'>derive</span>(<span class='ident'>Debug</span>)]</span>
 <span class='kw'>pub</span> <span class='kw'>enum</span> <span class='ident'>ToFileThreadMsg</span> {
-    <span class='doccomment'>/// Replace text between the start point and end point with the data from the string.</span>
-    <span class='doccomment'>/// If the end point is `None`, the text is just inserted at the start point.</span>
-    <span class='doccomment'>/// If the string is the empty string, the text between the start point and end point is</span>
-    <span class='doccomment'>/// deleted.</span>
-    <span class='ident'>ReplaceText</span>(<span class='ident'>SelectionRange</span>, <span class='ident'>String</span>),
-    <span class='doccomment'>/// Clears all the text in the file</span>
+    <span class='doccomment'>/// Replace text inside the current selection ranges within the file.</span>
+    <span class='ident'>ReplaceText</span>(<span class='ident'>String</span>),
+    <span class='doccomment'>/// Clears all the text in the file.</span>
     <span class='ident'>ClearAllText</span>,
     <span class='doccomment'>/// Saves the file to the OS file system. If the path is `None`, the file will not be saved.</span>
     <span class='doccomment'>/// The front end is responsible for making sure the file thread has a proper path to a file.</span>
-    <span class='doccomment'>/// This may in the future accept a channel that</span>
+    <span class='doccomment'>/// This may in the future accept a channel that.</span>
     <span class='ident'>Save</span>(<span class='ident'>Sender</span><span class='op'>&lt;</span><span class='ident'>SaveResult</span><span class='op'>&gt;</span>),
 }
 
