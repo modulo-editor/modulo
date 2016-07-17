@@ -1,6 +1,6 @@
 //! This module handles storing and manipulating file data.
 
-use modulo_traits::text::{Line, SelectionRange};
+use modulo_traits::text::{Line, Point, SelectionRange};
 use std::fs::File;
 use std::io::Read;
 use std::path::Path;
@@ -39,43 +39,42 @@ impl FileData {
         }
     }
 
-    // TODO(Connor): Use the ranges stored by file data rather than only allowing arbitrary ranges
-    // to be passed in.
-    // pub fn input_text(&mut self, text: &str) {
-    //     self.replace_text_in_ranges(&mut self.selections, text);
-    // }
-
-    /// Replaces all the text in a selection range.
-    pub fn replace_text_in_ranges(&mut self, ranges: &mut Vec<SelectionRange>, text: &str) {
+    /// Replaces all the text in a selection range. Returns the new vec of selection ranges.
+    pub fn replace_text(&mut self, text: &str) {
         // TODO(Connor): Check for overlapping ranges and merge them (maybe this should be done when ranges are edited)
-        ranges.sort();
+        self.selections.sort();
 
         let mut buffer = Vec::new();
+        let mut new_selections = Vec::new();
         let mut last_line = 0;
 
-        for range in ranges {
+        for selection in &self.selections {
             // Make sure begin is always before end
-            let (begin, end) = match range.end_point {
-                Some(end) => if range.begin_point < end {
-                    (range.begin_point, end)
+            let (begin, end) = match selection.end_point {
+                Some(end) => if selection.begin_point < end {
+                    (selection.begin_point, end)
                 } else {
-                    (end, range.begin_point)
+                    (end, selection.begin_point)
                 },
-                None => (range.begin_point, range.begin_point),
+                None => (selection.begin_point, selection.begin_point),
             };
 
             let prefix = &self.lines[begin.line][..begin.column];
             let postfix = &self.lines[end.line][end.column..];
 
-
             buffer.extend_from_slice(&self.lines[last_line..begin.line]);
+            // TODO(Connor): Avoid this Vec
+            let lines = text.lines().collect::<Vec<_>>();
+            let new_line = buffer.len() + lines.len() - 1;
+            let new_column = prefix.len() + lines.last().map(|last| last.len()).unwrap_or(0);
+            new_selections.push(SelectionRange::new(Point::new(new_line, new_column), None));
             let text = format!("{}{}{}", prefix, text, postfix);
             buffer.extend(text.lines().map(|line| Line::new(line.into())));
             last_line = end.line + 1;
         }
         buffer.extend_from_slice(&self.lines[last_line..]);
-
         self.lines = buffer;
+        self.selections = new_selections;
     }
 
     /// Clears all the data in the file;
@@ -84,84 +83,12 @@ impl FileData {
         self.lines.clear();
         self.lines.push(Line::new(String::new()));
     }
-}
 
-#[cfg(test)]
-mod tests {
-    use super::*;
-    use modulo_traits::text::{Point, SelectionRange};
-
-    #[test]
-    fn test_new_file_single_new_line_no_selections() {
-        let file_data = FileData::new();
-        assert!(file_data.selections.is_empty());
-        assert_eq!(file_data.lines.len(), 1);
-        assert_eq!(file_data.lines[0].text, String::new());
+    pub fn add_selection(&mut self, range: SelectionRange) {
+        self.selections.push(range);
     }
 
-    #[test]
-    fn test_load_file_from_string() {
-        let mut file_data = FileData::new();
-        file_data.load_from_string("test\ntest\ntest");
-        assert_eq!(file_data.lines.len(), 3);
-    }
-
-    #[test]
-    fn test_clear_file_single_new_line_no_selections() {
-        let mut file_data = FileData::new();
-        file_data.load_from_string("test\ntest\ntest");
-        file_data.clear_all_text();
-        assert!(file_data.selections.is_empty());
-        assert_eq!(file_data.lines.len(), 1);
-        assert_eq!(file_data.lines[0].text, String::new());
-    }
-
-    #[test]
-    fn test_insert_text() {
-        let mut file_data = FileData::new();
-        file_data.replace_text_in_ranges(&mut vec!(SelectionRange::new(Point::new(0, 0), None)), "hi");
-        assert_eq!(file_data.lines.len(), 1);
-        assert_eq!(file_data.lines[0].text, String::from("hi"));
-    }
-
-    #[test]
-    fn test_replace_text() {
-        let mut file_data = FileData::new();
-        file_data.replace_text_in_ranges(&mut vec!(SelectionRange::new(Point::new(0, 0), None)), "hi\nhi");
-        assert_eq!(file_data.lines.len(), 2);
-        assert_eq!(file_data.lines[0].text, String::from("hi"));
-        assert_eq!(file_data.lines[1].text, String::from("hi"));
-        file_data.replace_text_in_ranges(&mut vec!(SelectionRange::new(Point::new(0, 0), Some(Point::new(0,2)))), "no");
-        assert_eq!(file_data.lines.len(), 2);
-        assert_eq!(file_data.lines[0].text, String::from("no"));
-        assert_eq!(file_data.lines[1].text, String::from("hi"));
-        file_data.replace_text_in_ranges(&mut vec!(
-            SelectionRange::new(Point::new(0, 0), Some(Point::new(0,2))),
-            SelectionRange::new(Point::new(1, 0), Some(Point::new(1,2)))
-        ), "so");
-        println!("{:?}", file_data.lines);
-        assert_eq!(file_data.lines.len(), 2);
-        assert_eq!(file_data.lines[0].text, String::from("so"));
-        assert_eq!(file_data.lines[1].text, String::from("so"));
-        file_data.clear_all_text();
-        assert!(file_data.selections.is_empty());
-        assert_eq!(file_data.lines.len(), 1);
-        assert_eq!(file_data.lines[0].text, String::new());
-        file_data.load_from_string("no\nyes\nnot");
-        file_data.replace_text_in_ranges(&mut vec!(
-            SelectionRange::new(Point::new(0, 1), Some(Point::new(0,2))),
-            SelectionRange::new(Point::new(2, 1), Some(Point::new(2,2)))
-        ), "j");
-        assert_eq!(file_data.lines.len(), 3);
-        assert_eq!(file_data.lines[0].text, String::from("nj"));
-        assert_eq!(file_data.lines[1].text, String::from("yes"));
-        assert_eq!(file_data.lines[2].text, String::from("njt"));
-        file_data.replace_text_in_ranges(&mut vec!(
-            SelectionRange::new(Point::new(0, 0), Some(Point::new(1,3))),
-            SelectionRange::new(Point::new(2, 0), Some(Point::new(2,3)))
-        ), "hi");
-        assert_eq!(file_data.lines.len(), 2);
-        assert_eq!(file_data.lines[0].text, String::from("hi"));
-        assert_eq!(file_data.lines[1].text, String::from("hi"));
+    pub fn clear_all_selections(&mut self) {
+        self.selections.clear();
     }
 }
