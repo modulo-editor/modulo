@@ -1,1 +1,1 @@
-initSidebarItems({"mod":[["file_thread",""]]});
+initSidebarItems({"mod":[["file_data","This module handles storing and manipulating file data."],["file_thread","The file thread handles receiving messages related to file manipulation"]]});

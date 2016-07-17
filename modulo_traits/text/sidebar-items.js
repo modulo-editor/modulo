@@ -1,1 +1,1 @@
-initSidebarItems({"struct":[["Line","Holds data for a single line of text."],["Point","Represents a cursor in text. Stores the line index and the column index."]]});
+initSidebarItems({"struct":[["Line","Holds data for a single line of text."],["Point","Represents a cursor in text. Stores the line index and the column index."],["SelectionRange","Repesents a cursor location or selection. If `end_point` is `None`, this represents a cursor location, otherwise this represents a selection."]]});

@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["FileData","Stores data for a file."]]});

@@ -159,10 +159,10 @@
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>handle_spawn_file_thread</span>(<span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='self'>self</span>, <span class='ident'>path</span>: <span class='prelude-ty'>Option</span><span class='op'>&lt;</span><span class='ident'>PathBuf</span><span class='op'>&gt;</span>) {
         <span class='kw'>let</span> (<span class='ident'>sender</span>, <span class='ident'>receiver</span>) <span class='op'>=</span> <span class='ident'>mpsc</span>::<span class='ident'>channel</span>();
         <span class='kw'>let</span> <span class='ident'>id</span> <span class='op'>=</span> <span class='ident'>FileThreadId</span>(<span class='self'>self</span>.<span class='ident'>file_id_counter</span>);
-        <span class='kw'>let</span> <span class='ident'>file_thread</span> <span class='op'>=</span> <span class='ident'>FileThread</span>::<span class='ident'>start</span>(<span class='ident'>id</span>,
-                                            <span class='ident'>path</span>,
-                                            <span class='self'>self</span>.<span class='ident'>file_sender</span>.<span class='ident'>clone</span>(),
-                                            <span class='ident'>receiver</span>);
+        <span class='ident'>FileThread</span>::<span class='ident'>start</span>(<span class='ident'>id</span>,
+                          <span class='ident'>path</span>,
+                          <span class='self'>self</span>.<span class='ident'>file_sender</span>.<span class='ident'>clone</span>(),
+                          <span class='ident'>receiver</span>);
         <span class='self'>self</span>.<span class='ident'>file_threads</span>.<span class='ident'>insert</span>(<span class='ident'>id</span>, <span class='ident'>sender</span>);
         <span class='self'>self</span>.<span class='ident'>file_id_counter</span> <span class='op'>+=</span> <span class='number'>1</span>;
     }
