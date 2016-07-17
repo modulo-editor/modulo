@@ -1,5 +1,5 @@
-use ::file::text::Point;
 use std::sync::mpsc::Sender;
+use text::Point;
 
 #[derive(Debug, Eq, PartialEq, Hash, Clone, Copy)]
 pub struct FileThreadId(pub usize);

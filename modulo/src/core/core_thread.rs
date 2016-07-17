@@ -1,6 +1,6 @@
-use ::core::core_msg::ToCoreThreadMsg;
-use ::file::file_msg::{FileThreadId, ToFileThreadMsg};
-use ::file::file_thread::FileThread;
+use modulo_traits::core_msg::ToCoreThreadMsg;
+use modulo_traits::file_msg::{FileThreadId, ToFileThreadMsg};
+use file::file_thread::FileThread;
 use std::collections::HashMap;
 use std::path::PathBuf;
 use std::sync::mpsc::{self, Sender, Receiver};

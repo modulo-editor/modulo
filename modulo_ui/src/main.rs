@@ -1,3 +1,5 @@
+//! The modulo editor
+
 use std::process::{Command, Stdio};
 use std::io::Write;
 

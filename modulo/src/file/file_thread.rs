@@ -1,6 +1,6 @@
-use ::core::core_msg::ToCoreThreadMsg;
-use ::file::file_msg::{FileThreadId, ToFileThreadMsg, SaveResult};
-use ::file::text::{Line, Point};
+use modulo_traits::core_msg::ToCoreThreadMsg;
+use modulo_traits::file_msg::{FileThreadId, ToFileThreadMsg, SaveResult};
+use modulo_traits::text::{Line, Point};
 use std::fs::File;
 use std::io::{Read, Write};
 use std::path::PathBuf;
@@ -85,8 +85,8 @@ impl FileThread {
         };
 
         let lines = {
-            let before_text = &self.data[begin.line][..begin.index];
-            let after_text = &self.data[end.line][end.index..];
+            let before_text = &self.data[begin.line][..begin.column];
+            let after_text = &self.data[end.line][end.column..];
 
             let text = format!("{}{}{}", before_text, text, after_text);
             let lines: Vec<Line> = text.lines().map(|line| Line::new(line.into())).collect();
