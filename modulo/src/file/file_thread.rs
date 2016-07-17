@@ -45,9 +45,9 @@ impl FileThread {
     pub fn run(&mut self) {
         while let Ok(msg) = self.core_receiver.recv() {
             match msg {
-                ToFileThreadMsg::ReplaceText(range, text) => {
+                ToFileThreadMsg::ReplaceText(text) => {
                     info!("Recieved replace text file message.");
-                    self.file.replace_text_in_ranges(&mut vec!(range), &text);
+                    self.file.replace_text(&text);
                 },
                 ToFileThreadMsg::ClearAllText => {
                     info!("Recieved clear all text message.");
