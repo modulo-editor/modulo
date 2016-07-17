@@ -3,6 +3,7 @@ name = "modulo_ui"
 version = "0.1.0"
 dependencies = [
  "modulo 0.1.0",
+ "modulo_traits 0.1.0",
 ]
 
 [[package]]

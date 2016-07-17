@@ -56,3 +56,20 @@ impl Point {
         }
     }
 }
+
+/// Repesents a cursor location or selection. If `end_point` is `None`, this represents a cursor
+/// location, otherwise this represents a selection.
+#[derive(Debug)]
+pub struct SelectionRange {
+    pub begin_point: Point,
+    pub end_point: Option<Point>,
+}
+
+impl SelectionRange {
+    pub fn new(begin: Point, end: Option<Point>) -> SelectionRange {
+        SelectionRange {
+            begin_point: begin,
+            end_point: end,
+        }
+    }
+}

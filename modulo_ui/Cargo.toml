@@ -6,3 +6,4 @@ license = "MIT"
 
 [dependencies]
 modulo = { path = "../modulo" }
+modulo_traits = { path = "../modulo_traits" }

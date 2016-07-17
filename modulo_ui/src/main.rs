@@ -1,22 +1,19 @@
 //! The modulo editor
+extern crate modulo;
+extern crate modulo_traits;
 
-use std::process::{Command, Stdio};
-use std::io::Write;
+use modulo::core::core_thread::Core;
+use modulo_traits::core_msg::ToCoreThreadMsg;
+use modulo_traits::file_msg::{FileThreadId, ToFileThreadMsg};
+use std::path::PathBuf;
+use std::sync::mpsc;
 
 fn main() {
-    // TODO(Connor): Unhardcode this path.
-    let mut p = Command::new("../modulo/target/debug/modulo")
-        .stdin(Stdio::piped())
-        // .stdout(Stdio::piped())
-        .spawn().expect("Failed to start Modulo");
-    {
-        let mut p_stdin = p.stdin.as_mut().expect("Failed to open stdin.");
-        p_stdin.write("test".as_bytes()).unwrap();
-    }
-    p.wait().unwrap().success();
+    let (sender, handle) = Core::start();
+    sender.send(ToCoreThreadMsg::SpawnFileThread(Some(PathBuf::from("test.txt"))));
+    let (save_sender, save_receiver) = mpsc::channel();
+    sender.send(ToCoreThreadMsg::FileThreadMsg(FileThreadId(0), ToFileThreadMsg::Save(save_sender)));
+    save_receiver.recv().unwrap();
 
-    // TODO(Connor): Make modulo a library. modulo-core and modulo-ui can both add the modulo crate
-    // to have access to the same structs for usage with serde(serialize/deserialize).
-    p.stdout.as_mut().unwrap();
-    p.wait().unwrap();
+    handle.join();
 }
