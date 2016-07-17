@@ -1,1 +1,1 @@
-initSidebarItems({"mod":[["core_msg",""],["core_thread",""]]});
+initSidebarItems({"mod":[["core_thread",""]]});

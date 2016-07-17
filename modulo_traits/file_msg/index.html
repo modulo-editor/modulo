@@ -4,13 +4,13 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="generator" content="rustdoc">
-    <meta name="description" content="API documentation for the Rust `SaveResult` enum in crate `modulo`.">
-    <meta name="keywords" content="rust, rustlang, rust-lang, SaveResult">
+    <meta name="description" content="API documentation for the Rust `file_msg` mod in crate `modulo_traits`.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, file_msg">
 
-    <title>modulo::file::file_msg::SaveResult - Rust</title>
+    <title>modulo_traits::file_msg - Rust</title>
 
-    <link rel="stylesheet" type="text/css" href="../../../rustdoc.css">
-    <link rel="stylesheet" type="text/css" href="../../../main.css">
+    <link rel="stylesheet" type="text/css" href="../../rustdoc.css">
+    <link rel="stylesheet" type="text/css" href="../../main.css">
     
 
     
@@ -28,7 +28,7 @@
 
     <nav class="sidebar">
         
-        <p class='location'><a href='../../index.html'>modulo</a>::<wbr><a href='../index.html'>file</a>::<wbr><a href='index.html'>file_msg</a></p><script>window.sidebarCurrent = {name: 'SaveResult', ty: 'enum', relpath: ''};</script><script defer src="sidebar-items.js"></script>
+        <p class='location'><a href='../index.html'>modulo_traits</a></p><script>window.sidebarCurrent = {name: 'file_msg', ty: 'mod', relpath: '../'};</script><script defer src="../sidebar-items.js"></script>
     </nav>
 
     <nav class="sub">
@@ -42,20 +42,37 @@
         </form>
     </nav>
 
-    <section id='main' class="content enum">
-<h1 class='fqn'><span class='in-band'>Enum <a href='../../index.html'>modulo</a>::<wbr><a href='../index.html'>file</a>::<wbr><a href='index.html'>file_msg</a>::<wbr><a class='enum' href=''>SaveResult</a></span><span class='out-of-band'><span id='render-detail'>
+    <section id='main' class="content mod">
+<h1 class='fqn'><span class='in-band'>Module <a href='../index.html'>modulo_traits</a>::<wbr><a class='mod' href=''>file_msg</a></span><span class='out-of-band'><span id='render-detail'>
                    <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                        [<span class='inner'>&#x2212;</span>]
                    </a>
-               </span><a id='src-128' class='srclink' href='../../../src/modulo/file/file_msg.rs.html#25-29' title='goto source code'>[src]</a></span></h1>
-<pre class='rust enum'>pub enum SaveResult {
-    Ok,
-    Err,
-    PromptForPath,
-}</pre><div class='docblock'><p>Used to output the result of the save message. The frontend can use this information to know if
+               </span><a id='src-23' class='srclink' href='../../src/modulo_traits/file_msg.rs.html#1-29' title='goto source code'>[src]</a></span></h1>
+<h2 id='structs' class='section-header'><a href="#structs">Structs</a></h2>
+<table>
+                       <tr class=' module-item'>
+                           <td><a class='struct' href='struct.FileThreadId.html'
+                                  title='modulo_traits::file_msg::FileThreadId'>FileThreadId</a></td>
+                           <td class='docblock short'>
+                                
+                           </td>
+                       </tr></table><h2 id='enums' class='section-header'><a href="#enums">Enums</a></h2>
+<table>
+                       <tr class=' module-item'>
+                           <td><a class='enum' href='enum.SaveResult.html'
+                                  title='modulo_traits::file_msg::SaveResult'>SaveResult</a></td>
+                           <td class='docblock short'>
+                                <p>Used to output the result of the save message. The frontend can use this information to know if
 a file saved successfully.</p>
-</div><h2 class='variants'>Variants</h2>
-<table class='variants_table'><tr><td id='variant.Ok'><code>Ok</code></td><td></td><td></td></tr><tr><td id='variant.Err'><code>Err</code></td><td></td><td></td></tr><tr><td id='variant.PromptForPath'><code>PromptForPath</code></td><td></td><td></td></tr></table></section>
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class='enum' href='enum.ToFileThreadMsg.html'
+                                  title='modulo_traits::file_msg::ToFileThreadMsg'>ToFileThreadMsg</a></td>
+                           <td class='docblock short'>
+                                <p>Messages that can be sent to the file thread to manipulate text</p>
+                           </td>
+                       </tr></table></section>
     <section id='search' class="content hidden"></section>
 
     <section class="footer"></section>
@@ -109,13 +126,13 @@ a file saved successfully.</p>
     
 
     <script>
-        window.rootPath = "../../../";
-        window.currentCrate = "modulo";
+        window.rootPath = "../../";
+        window.currentCrate = "modulo_traits";
         window.playgroundUrl = "";
     </script>
-    <script src="../../../jquery.js"></script>
-    <script src="../../../main.js"></script>
+    <script src="../../jquery.js"></script>
+    <script src="../../main.js"></script>
     
-    <script defer src="../../../search-index.js"></script>
+    <script defer src="../../search-index.js"></script>
 </body>
 </html>

@@ -4,13 +4,13 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="generator" content="rustdoc">
-    <meta name="description" content="Source to the Rust file `/home/travis/build/modulo-editor/modulo/modulo/src/file/text.rs`.">
+    <meta name="description" content="Source to the Rust file `/home/travis/build/modulo-editor/modulo/modulo_traits/src/text.rs`.">
     <meta name="keywords" content="rust, rustlang, rust-lang">
 
     <title>text.rs.html -- source</title>
 
-    <link rel="stylesheet" type="text/css" href="../../../rustdoc.css">
-    <link rel="stylesheet" type="text/css" href="../../../main.css">
+    <link rel="stylesheet" type="text/css" href="../../rustdoc.css">
+    <link rel="stylesheet" type="text/css" href="../../main.css">
     
 
     
@@ -144,18 +144,18 @@
     }
 }
 
-<span class='doccomment'>/// Represents a cursor in text.</span>
+<span class='doccomment'>/// Represents a cursor in text. Stores the line index and the column index.</span>
 <span class='attribute'>#[<span class='ident'>derive</span>(<span class='ident'>Debug</span>, <span class='ident'>Clone</span>, <span class='ident'>Copy</span>)]</span>
 <span class='kw'>pub</span> <span class='kw'>struct</span> <span class='ident'>Point</span> {
     <span class='kw'>pub</span> <span class='ident'>line</span>: <span class='ident'>usize</span>,
-    <span class='kw'>pub</span> <span class='ident'>index</span>: <span class='ident'>usize</span>,
+    <span class='kw'>pub</span> <span class='ident'>column</span>: <span class='ident'>usize</span>,
 }
 
 <span class='kw'>impl</span> <span class='ident'>Point</span> {
-    <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>new</span>(<span class='ident'>line</span>: <span class='ident'>usize</span>, <span class='ident'>index</span>: <span class='ident'>usize</span>) <span class='op'>-&gt;</span> <span class='ident'>Point</span> {
+    <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>new</span>(<span class='ident'>line</span>: <span class='ident'>usize</span>, <span class='ident'>column</span>: <span class='ident'>usize</span>) <span class='op'>-&gt;</span> <span class='ident'>Point</span> {
         <span class='ident'>Point</span> {
             <span class='ident'>line</span>: <span class='ident'>line</span>,
-            <span class='ident'>index</span>: <span class='ident'>index</span>,
+            <span class='ident'>column</span>: <span class='ident'>column</span>,
         }
     }
 }
@@ -214,13 +214,13 @@
     
 
     <script>
-        window.rootPath = "../../../";
-        window.currentCrate = "modulo";
+        window.rootPath = "../../";
+        window.currentCrate = "modulo_traits";
         window.playgroundUrl = "";
     </script>
-    <script src="../../../jquery.js"></script>
-    <script src="../../../main.js"></script>
+    <script src="../../jquery.js"></script>
+    <script src="../../main.js"></script>
     
-    <script defer src="../../../search-index.js"></script>
+    <script defer src="../../search-index.js"></script>
 </body>
 </html>

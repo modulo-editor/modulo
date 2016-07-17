@@ -47,14 +47,12 @@
 <span id="3">3</span>
 <span id="4">4</span>
 <span id="5">5</span>
-<span id="6">6</span>
 </pre><pre class='rust '>
-<span class='attribute'>#[<span class='ident'>cfg</span>(<span class='ident'>test</span>)]</span>
-<span class='kw'>mod</span> <span class='ident'>tests</span> {
-    <span class='attribute'>#[<span class='ident'>test</span>]</span>
-    <span class='kw'>fn</span> <span class='ident'>it_works</span>() {
-    }
-}
+<span class='doccomment'>//! This crate stores the shared data structures for the whole modulo project.</span>
+
+<span class='kw'>pub</span> <span class='kw'>mod</span> <span class='ident'>core_msg</span>;
+<span class='kw'>pub</span> <span class='kw'>mod</span> <span class='ident'>file_msg</span>;
+<span class='kw'>pub</span> <span class='kw'>mod</span> <span class='ident'>text</span>;
 </pre>
 </section>
     <section id='search' class="content hidden"></section>
