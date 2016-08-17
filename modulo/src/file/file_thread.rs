@@ -46,13 +46,17 @@ impl FileThread {
         while let Ok(msg) = self.core_receiver.recv() {
             match msg {
                 ToFileThreadMsg::ReplaceText(text) => {
-                    info!("Recieved replace text file message.");
+                    info!("Received replace text file message.");
                     self.file.replace_text(&text);
                 },
                 ToFileThreadMsg::ClearAllText => {
-                    info!("Recieved clear all text message.");
+                    info!("Received clear all text message.");
                     self.file.clear_all_text();
                 },
+                ToFileThreadMsg::SetSelections(selection_ranges) => {
+                    info!("Received set selections message");
+                    self.file.set_selections(selection_ranges);
+                }
                 ToFileThreadMsg::Save(sender) => {
                     info!("Received save file message.");
                     self.handle_save(sender);
