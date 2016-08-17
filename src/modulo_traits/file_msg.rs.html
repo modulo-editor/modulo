@@ -68,6 +68,8 @@
 <span id="24">24</span>
 <span id="25">25</span>
 <span id="26">26</span>
+<span id="27">27</span>
+<span id="28">28</span>
 </pre><pre class='rust '>
 <span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>sync</span>::<span class='ident'>mpsc</span>::<span class='ident'>Sender</span>;
 <span class='kw'>use</span> <span class='ident'>text</span>::<span class='ident'>SelectionRange</span>;
@@ -82,6 +84,8 @@
     <span class='ident'>ReplaceText</span>(<span class='ident'>String</span>),
     <span class='doccomment'>/// Clears all the text in the file.</span>
     <span class='ident'>ClearAllText</span>,
+    <span class='doccomment'>/// Sets all the current selections in the document.</span>
+    <span class='ident'>SetSelections</span>(<span class='ident'>Vec</span><span class='op'>&lt;</span><span class='ident'>SelectionRange</span><span class='op'>&gt;</span>),
     <span class='doccomment'>/// Saves the file to the OS file system. If the path is `None`, the file will not be saved.</span>
     <span class='doccomment'>/// The front end is responsible for making sure the file thread has a proper path to a file.</span>
     <span class='doccomment'>/// This may in the future accept a channel that.</span>

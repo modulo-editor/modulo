@@ -132,10 +132,6 @@
 <span id="88">88</span>
 <span id="89">89</span>
 <span id="90">90</span>
-<span id="91">91</span>
-<span id="92">92</span>
-<span id="93">93</span>
-<span id="94">94</span>
 </pre><pre class='rust '>
 <span class='doccomment'>//! This module handles storing and manipulating file data.</span>
 
@@ -223,12 +219,8 @@
         <span class='self'>self</span>.<span class='ident'>lines</span>.<span class='ident'>push</span>(<span class='ident'>Line</span>::<span class='ident'>new</span>(<span class='ident'>String</span>::<span class='ident'>new</span>()));
     }
 
-    <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>add_selection</span>(<span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='self'>self</span>, <span class='ident'>range</span>: <span class='ident'>SelectionRange</span>) {
-        <span class='self'>self</span>.<span class='ident'>selections</span>.<span class='ident'>push</span>(<span class='ident'>range</span>);
-    }
-
-    <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>clear_all_selections</span>(<span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='self'>self</span>) {
-        <span class='self'>self</span>.<span class='ident'>selections</span>.<span class='ident'>clear</span>();
+    <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>set_selections</span>(<span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='self'>self</span>, <span class='ident'>selections</span>: <span class='ident'>Vec</span><span class='op'>&lt;</span><span class='ident'>SelectionRange</span><span class='op'>&gt;</span>) {
+        <span class='self'>self</span>.<span class='ident'>selections</span> <span class='op'>=</span> <span class='ident'>selections</span>;
     }
 }
 </pre>

@@ -145,6 +145,10 @@
 <span id="101">101</span>
 <span id="102">102</span>
 <span id="103">103</span>
+<span id="104">104</span>
+<span id="105">105</span>
+<span id="106">106</span>
+<span id="107">107</span>
 </pre><pre class='rust '>
 <span class='doccomment'>//! The file thread handles receiving messages related to file manipulation</span>
 
@@ -194,13 +198,17 @@
         <span class='kw'>while</span> <span class='kw'>let</span> <span class='prelude-val'>Ok</span>(<span class='ident'>msg</span>) <span class='op'>=</span> <span class='self'>self</span>.<span class='ident'>core_receiver</span>.<span class='ident'>recv</span>() {
             <span class='kw'>match</span> <span class='ident'>msg</span> {
                 <span class='ident'>ToFileThreadMsg</span>::<span class='ident'>ReplaceText</span>(<span class='ident'>text</span>) <span class='op'>=&gt;</span> {
-                    <span class='macro'>info</span><span class='macro'>!</span>(<span class='string'>&quot;Recieved replace text file message.&quot;</span>);
+                    <span class='macro'>info</span><span class='macro'>!</span>(<span class='string'>&quot;Received replace text file message.&quot;</span>);
                     <span class='self'>self</span>.<span class='ident'>file</span>.<span class='ident'>replace_text</span>(<span class='kw-2'>&amp;</span><span class='ident'>text</span>);
                 },
                 <span class='ident'>ToFileThreadMsg</span>::<span class='ident'>ClearAllText</span> <span class='op'>=&gt;</span> {
-                    <span class='macro'>info</span><span class='macro'>!</span>(<span class='string'>&quot;Recieved clear all text message.&quot;</span>);
+                    <span class='macro'>info</span><span class='macro'>!</span>(<span class='string'>&quot;Received clear all text message.&quot;</span>);
                     <span class='self'>self</span>.<span class='ident'>file</span>.<span class='ident'>clear_all_text</span>();
                 },
+                <span class='ident'>ToFileThreadMsg</span>::<span class='ident'>SetSelections</span>(<span class='ident'>selection_ranges</span>) <span class='op'>=&gt;</span> {
+                    <span class='macro'>info</span><span class='macro'>!</span>(<span class='string'>&quot;Received set selections message&quot;</span>);
+                    <span class='self'>self</span>.<span class='ident'>file</span>.<span class='ident'>set_selections</span>(<span class='ident'>selection_ranges</span>);
+                }
                 <span class='ident'>ToFileThreadMsg</span>::<span class='ident'>Save</span>(<span class='ident'>sender</span>) <span class='op'>=&gt;</span> {
                     <span class='macro'>info</span><span class='macro'>!</span>(<span class='string'>&quot;Received save file message.&quot;</span>);
                     <span class='self'>self</span>.<span class='ident'>handle_save</span>(<span class='ident'>sender</span>);
